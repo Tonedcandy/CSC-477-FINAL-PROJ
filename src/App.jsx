@@ -5,11 +5,16 @@ import './App.css'
 import MapChart from './MapChart'
 import LogoSection from './LogoSection'
 import usData from './assets/states-albers-10m.json'
-import ProtestantLabel from './ProtestantLabel'
+//import ProtestantLabel from './ProtestantLabel'
+
+import ProtestantLabel from "./components/ProtestantLabel";
 
 
 function App() {
   const [displayText, setDisplayText] = useState("");
+
+  const [selectedState, setSelectedState] = useState(null);
+
   const [index, setIndex] = useState(0);
   const message = "Hi my name is monish";
   useEffect(() => {
@@ -48,7 +53,8 @@ function App() {
           <br />
           <div className='relative'>
             <div className="origin-top-right scale-75 float-right ml-6">
-              <ProtestantLabel />
+              {/* <ProtestantLabel /> */}
+
             </div>
             <div className='text-start'>
               <ol className='space-y-2 list-decimal pl-4'>
@@ -70,7 +76,15 @@ function App() {
           <br />
           <p className='text-xl text-[purple]'>The Religious Landscape Today</p>
           <br />
-          <MapChart us={usData} />
+          {/* <MapChart us={usData} /> */}
+          <p className="mt-4 text-sm text-gray-500">
+            Selected state: {selectedState || "None"}
+          </p>
+          <ProtestantLabel selectedState={selectedState} />
+          <MapChart us={usData}
+            selectedState={selectedState}
+            onStateClick={(name) => setSelectedState(name)}
+          />
           <br />
           <p className=' text-base font-extrabold'>Figure: Protestant presence by state.</p>
           <p className='text-sm'>
