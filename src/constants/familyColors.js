@@ -5,7 +5,7 @@ export const FAMILY_COLORS = {
     Reformed: "#FF6F91",
     Methodism: "#FF9671",
     Baptist: "#FFC75F",
-    Restoration: "#F9F871",
+    Restoration: "#CA8A04",
     Other: "#6b7280" // neutral gray for catch-all
 };
 

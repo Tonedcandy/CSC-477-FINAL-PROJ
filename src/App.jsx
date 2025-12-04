@@ -28,6 +28,14 @@ function App() {
 
     return () => clearTimeout(timeoutID);
   }, [index]);
+  const mapFigureTitle = selectedFamily
+    ? `${selectedFamily} adherents by state.`
+    : "Protestant presence by state.";
+
+  const mapFigureDescription = selectedFamily
+    ? `This choropleth map highlights where ${selectedFamily} communities concentrate across the United States. Darker shading indicates states with more adherents in this family, while lighter shading marks smaller presences.`
+    : "This choropleth map shows the share of residents in each U.S. state who identify with a Protestant tradition. Darker shading indicates a higher proportion of Protestants, while lighter shading marks states where Protestants make up a smaller share of the population. Use this map as a snapshot of the current religious landscape across the country.";
+
   return (
     <div className='min-h-screen bg-slate-200 flex justify-center py-10'>
       <main className='bg-white shadow-lg border-slate-300 
@@ -90,9 +98,8 @@ function App() {
                 onStateClick={setSelectedState}
               />
               <br />
-              <p className='w-full text-[0.7em] font-extrabold'>Figure: Protestant presence by state.</p>
-              <p className='w-full text-[0.6em]'>
-                This choropleth map shows the share of residents in each U.S. state who identify with a Protestant tradition. Darker shading indicates a higher proportion of Protestants, while lighter shading marks states where Protestants make up a smaller share of the population. Use this map as a snapshot of the current religious landscape across the country.</p>
+              <p className='w-full text-[0.7em] font-extrabold'>Figure: {mapFigureTitle}</p>
+              <p className='w-full text-[0.6em]'>{mapFigureDescription}</p>
 
             </div>
 
