@@ -1,11 +1,11 @@
-// src/data/protestantByState.js
+// protestantByState.js
 
 export const PROTESTANT_BY_STATE = [
     { state: "Alabama", family: "Anglicanism", adherents: 138628 },
     { state: "Alabama", family: "Baptist", adherents: 1531982 },
     { state: "Alabama", family: "Lutheranism", adherents: 11302 },
     { state: "Alabama", family: "Methodism", adherents: 267030 },
-    { state: "Alabama", family: "Other", adherents: 1049845 },
+    { state: "Alabama", family: "Other", adherents: 680121 },
     { state: "Alabama", family: "Reformed", adherents: 59611 },
     { state: "Alabama", family: "Restoration", adherents: 137111 },
 
@@ -13,7 +13,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Alaska", family: "Baptist", adherents: 19645 },
     { state: "Alaska", family: "Lutheranism", adherents: 11609 },
     { state: "Alaska", family: "Methodism", adherents: 9449 },
-    { state: "Alaska", family: "Other", adherents: 196594 },
+    { state: "Alaska", family: "Other", adherents: 97927 },
     { state: "Alaska", family: "Reformed", adherents: 2924 },
     { state: "Alaska", family: "Restoration", adherents: 10848 },
 
@@ -21,7 +21,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Arizona", family: "Baptist", adherents: 120739 },
     { state: "Arizona", family: "Lutheranism", adherents: 74628 },
     { state: "Arizona", family: "Methodism", adherents: 58728 },
-    { state: "Arizona", family: "Other", adherents: 2775042 },
+    { state: "Arizona", family: "Other", adherents: 525031 },
     { state: "Arizona", family: "Reformed", adherents: 24100 },
     { state: "Arizona", family: "Restoration", adherents: 74516 },
 
@@ -29,7 +29,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Arkansas", family: "Baptist", adherents: 820025 },
     { state: "Arkansas", family: "Lutheranism", adherents: 13592 },
     { state: "Arkansas", family: "Methodism", adherents: 150910 },
-    { state: "Arkansas", family: "Other", adherents: 588250 },
+    { state: "Arkansas", family: "Other", adherents: 360084 },
     { state: "Arkansas", family: "Reformed", adherents: 17667 },
     { state: "Arkansas", family: "Restoration", adherents: 104592 },
 
@@ -37,7 +37,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "California", family: "Baptist", adherents: 823775 },
     { state: "California", family: "Lutheranism", adherents: 171428 },
     { state: "California", family: "Methodism", adherents: 277840 },
-    { state: "California", family: "Other", adherents: 15696761 },
+    { state: "California", family: "Other", adherents: 2571601 },
     { state: "California", family: "Reformed", adherents: 186285 },
     { state: "California", family: "Restoration", adherents: 392960 },
 
@@ -45,7 +45,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Colorado", family: "Baptist", adherents: 92434 },
     { state: "Colorado", family: "Lutheranism", adherents: 81802 },
     { state: "Colorado", family: "Methodism", adherents: 78096 },
-    { state: "Colorado", family: "Other", adherents: 1659052 },
+    { state: "Colorado", family: "Other", adherents: 490638 },
     { state: "Colorado", family: "Reformed", adherents: 40836 },
     { state: "Colorado", family: "Restoration", adherents: 66177 },
 
@@ -53,7 +53,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Connecticut", family: "Baptist", adherents: 84596 },
     { state: "Connecticut", family: "Lutheranism", adherents: 22702 },
     { state: "Connecticut", family: "Methodism", adherents: 39827 },
-    { state: "Connecticut", family: "Other", adherents: 1415671 },
+    { state: "Connecticut", family: "Other", adherents: 221976 },
     { state: "Connecticut", family: "Reformed", adherents: 74508 },
     { state: "Connecticut", family: "Restoration", adherents: 15243 },
 
@@ -61,7 +61,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Delaware", family: "Baptist", adherents: 16326 },
     { state: "Delaware", family: "Lutheranism", adherents: 5994 },
     { state: "Delaware", family: "Methodism", adherents: 47703 },
-    { state: "Delaware", family: "Other", adherents: 307271 },
+    { state: "Delaware", family: "Other", adherents: 67537 },
     { state: "Delaware", family: "Reformed", adherents: 9269 },
     { state: "Delaware", family: "Restoration", adherents: 6474 },
 
@@ -69,7 +69,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "District Of Columbia", family: "Baptist", adherents: 111090 },
     { state: "District Of Columbia", family: "Lutheranism", adherents: 3175 },
     { state: "District Of Columbia", family: "Methodism", adherents: 9777 },
-    { state: "District Of Columbia", family: "Other", adherents: 219021 },
+    { state: "District Of Columbia", family: "Other", adherents: 75718 },
     { state: "District Of Columbia", family: "Reformed", adherents: 9049 },
     { state: "District Of Columbia", family: "Restoration", adherents: 5977 },
 
@@ -77,7 +77,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Florida", family: "Baptist", adherents: 1464624 },
     { state: "Florida", family: "Lutheranism", adherents: 106113 },
     { state: "Florida", family: "Methodism", adherents: 431856 },
-    { state: "Florida", family: "Other", adherents: 7486153 },
+    { state: "Florida", family: "Other", adherents: 2497096 },
     { state: "Florida", family: "Reformed", adherents: 135071 },
     { state: "Florida", family: "Restoration", adherents: 267413 },
 
@@ -85,7 +85,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Georgia", family: "Baptist", adherents: 1970463 },
     { state: "Georgia", family: "Lutheranism", adherents: 33601 },
     { state: "Georgia", family: "Methodism", adherents: 589662 },
-    { state: "Georgia", family: "Other", adherents: 2379886 },
+    { state: "Georgia", family: "Other", adherents: 1016375 },
     { state: "Georgia", family: "Reformed", adherents: 98463 },
     { state: "Georgia", family: "Restoration", adherents: 157296 },
 
@@ -93,7 +93,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Hawaii", family: "Baptist", adherents: 20008 },
     { state: "Hawaii", family: "Lutheranism", adherents: 2955 },
     { state: "Hawaii", family: "Methodism", adherents: 10340 },
-    { state: "Hawaii", family: "Other", adherents: 535435 },
+    { state: "Hawaii", family: "Other", adherents: 103981 },
     { state: "Hawaii", family: "Reformed", adherents: 18246 },
     { state: "Hawaii", family: "Restoration", adherents: 10622 },
 
@@ -101,7 +101,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Idaho", family: "Baptist", adherents: 17618 },
     { state: "Idaho", family: "Lutheranism", adherents: 16656 },
     { state: "Idaho", family: "Methodism", adherents: 48776 },
-    { state: "Idaho", family: "Other", adherents: 830465 },
+    { state: "Idaho", family: "Other", adherents: 139043 },
     { state: "Idaho", family: "Reformed", adherents: 7966 },
     { state: "Idaho", family: "Restoration", adherents: 43607 },
 
@@ -109,7 +109,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Illinois", family: "Baptist", adherents: 556818 },
     { state: "Illinois", family: "Lutheranism", adherents: 364173 },
     { state: "Illinois", family: "Methodism", adherents: 278442 },
-    { state: "Illinois", family: "Other", adherents: 4831058 },
+    { state: "Illinois", family: "Other", adherents: 875023 },
     { state: "Illinois", family: "Reformed", adherents: 193942 },
     { state: "Illinois", family: "Restoration", adherents: 212124 },
 
@@ -117,7 +117,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Indiana", family: "Baptist", adherents: 345380 },
     { state: "Indiana", family: "Lutheranism", adherents: 131676 },
     { state: "Indiana", family: "Methodism", adherents: 299395 },
-    { state: "Indiana", family: "Other", adherents: 1696082 },
+    { state: "Indiana", family: "Other", adherents: 735818 },
     { state: "Indiana", family: "Reformed", adherents: 76912 },
     { state: "Indiana", family: "Restoration", adherents: 274785 },
 
@@ -125,7 +125,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Iowa", family: "Baptist", adherents: 46960 },
     { state: "Iowa", family: "Lutheranism", adherents: 295812 },
     { state: "Iowa", family: "Methodism", adherents: 186464 },
-    { state: "Iowa", family: "Other", adherents: 720435 },
+    { state: "Iowa", family: "Other", adherents: 166720 },
     { state: "Iowa", family: "Reformed", adherents: 125490 },
     { state: "Iowa", family: "Restoration", adherents: 46397 },
 
@@ -133,7 +133,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Kansas", family: "Baptist", adherents: 156309 },
     { state: "Kansas", family: "Lutheranism", adherents: 76852 },
     { state: "Kansas", family: "Methodism", adherents: 201416 },
-    { state: "Kansas", family: "Other", adherents: 768971 },
+    { state: "Kansas", family: "Other", adherents: 269205 },
     { state: "Kansas", family: "Reformed", adherents: 33455 },
     { state: "Kansas", family: "Restoration", adherents: 96578 },
 
@@ -141,7 +141,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Kentucky", family: "Baptist", adherents: 1018477 },
     { state: "Kentucky", family: "Lutheranism", adherents: 11664 },
     { state: "Kentucky", family: "Methodism", adherents: 198015 },
-    { state: "Kentucky", family: "Other", adherents: 713760 },
+    { state: "Kentucky", family: "Other", adherents: 260861 },
     { state: "Kentucky", family: "Reformed", adherents: 35397 },
     { state: "Kentucky", family: "Restoration", adherents: 219135 },
 
@@ -149,7 +149,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Louisiana", family: "Baptist", adherents: 841044 },
     { state: "Louisiana", family: "Lutheranism", adherents: 11518 },
     { state: "Louisiana", family: "Methodism", adherents: 133210 },
-    { state: "Louisiana", family: "Other", adherents: 1856648 },
+    { state: "Louisiana", family: "Other", adherents: 494235 },
     { state: "Louisiana", family: "Reformed", adherents: 10490 },
     { state: "Louisiana", family: "Restoration", adherents: 36460 },
 
@@ -157,7 +157,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Maine", family: "Baptist", adherents: 23525 },
     { state: "Maine", family: "Lutheranism", adherents: 2714 },
     { state: "Maine", family: "Methodism", adherents: 25760 },
-    { state: "Maine", family: "Other", adherents: 328529 },
+    { state: "Maine", family: "Other", adherents: 59909 },
     { state: "Maine", family: "Reformed", adherents: 19726 },
     { state: "Maine", family: "Restoration", adherents: 8551 },
 
@@ -165,7 +165,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Maryland", family: "Baptist", adherents: 244623 },
     { state: "Maryland", family: "Lutheranism", adherents: 74154 },
     { state: "Maryland", family: "Methodism", adherents: 229322 },
-    { state: "Maryland", family: "Other", adherents: 1855241 },
+    { state: "Maryland", family: "Other", adherents: 482745 },
     { state: "Maryland", family: "Reformed", adherents: 47959 },
     { state: "Maryland", family: "Restoration", adherents: 70617 },
 
@@ -173,7 +173,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Massachusetts", family: "Baptist", adherents: 63660 },
     { state: "Massachusetts", family: "Lutheranism", adherents: 19756 },
     { state: "Massachusetts", family: "Methodism", adherents: 47360 },
-    { state: "Massachusetts", family: "Other", adherents: 3096175 },
+    { state: "Massachusetts", family: "Other", adherents: 184923 },
     { state: "Massachusetts", family: "Reformed", adherents: 84298 },
     { state: "Massachusetts", family: "Restoration", adherents: 34567 },
 
@@ -181,7 +181,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Michigan", family: "Baptist", adherents: 325712 },
     { state: "Michigan", family: "Lutheranism", adherents: 296697 },
     { state: "Michigan", family: "Methodism", adherents: 254003 },
-    { state: "Michigan", family: "Other", adherents: 2749127 },
+    { state: "Michigan", family: "Other", adherents: 771935 },
     { state: "Michigan", family: "Reformed", adherents: 221872 },
     { state: "Michigan", family: "Restoration", adherents: 87031 },
 
@@ -189,7 +189,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Minnesota", family: "Baptist", adherents: 31227 },
     { state: "Minnesota", family: "Lutheranism", adherents: 875133 },
     { state: "Minnesota", family: "Methodism", adherents: 79868 },
-    { state: "Minnesota", family: "Other", adherents: 1717775 },
+    { state: "Minnesota", family: "Other", adherents: 362964 },
     { state: "Minnesota", family: "Reformed", adherents: 78045 },
     { state: "Minnesota", family: "Restoration", adherents: 22894 },
 
@@ -197,7 +197,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Mississippi", family: "Baptist", adherents: 1018833 },
     { state: "Mississippi", family: "Lutheranism", adherents: 3461 },
     { state: "Mississippi", family: "Methodism", adherents: 167546 },
-    { state: "Mississippi", family: "Other", adherents: 417922 },
+    { state: "Mississippi", family: "Other", adherents: 266971 },
     { state: "Mississippi", family: "Reformed", adherents: 26722 },
     { state: "Mississippi", family: "Restoration", adherents: 54798 },
 
@@ -205,7 +205,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Missouri", family: "Baptist", adherents: 797450 },
     { state: "Missouri", family: "Lutheranism", adherents: 136689 },
     { state: "Missouri", family: "Methodism", adherents: 230912 },
-    { state: "Missouri", family: "Other", adherents: 1554596 },
+    { state: "Missouri", family: "Other", adherents: 567359 },
     { state: "Missouri", family: "Reformed", adherents: 62360 },
     { state: "Missouri", family: "Restoration", adherents: 154190 },
 
@@ -213,7 +213,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Montana", family: "Baptist", adherents: 14724 },
     { state: "Montana", family: "Lutheranism", adherents: 42888 },
     { state: "Montana", family: "Methodism", adherents: 12787 },
-    { state: "Montana", family: "Other", adherents: 282262 },
+    { state: "Montana", family: "Other", adherents: 104030 },
     { state: "Montana", family: "Reformed", adherents: 9946 },
     { state: "Montana", family: "Restoration", adherents: 10660 },
 
@@ -221,7 +221,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Nebraska", family: "Baptist", adherents: 37622 },
     { state: "Nebraska", family: "Lutheranism", adherents: 206057 },
     { state: "Nebraska", family: "Methodism", adherents: 98221 },
-    { state: "Nebraska", family: "Other", adherents: 541722 },
+    { state: "Nebraska", family: "Other", adherents: 106993 },
     { state: "Nebraska", family: "Reformed", adherents: 38742 },
     { state: "Nebraska", family: "Restoration", adherents: 35556 },
 
@@ -229,7 +229,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Nevada", family: "Baptist", adherents: 54536 },
     { state: "Nevada", family: "Lutheranism", adherents: 18486 },
     { state: "Nevada", family: "Methodism", adherents: 13254 },
-    { state: "Nevada", family: "Other", adherents: 1166323 },
+    { state: "Nevada", family: "Other", adherents: 130215 },
     { state: "Nevada", family: "Reformed", adherents: 4297 },
     { state: "Nevada", family: "Restoration", adherents: 29080 },
 
@@ -237,7 +237,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "New Hampshire", family: "Baptist", adherents: 13454 },
     { state: "New Hampshire", family: "Lutheranism", adherents: 6251 },
     { state: "New Hampshire", family: "Methodism", adherents: 13333 },
-    { state: "New Hampshire", family: "Other", adherents: 302165 },
+    { state: "New Hampshire", family: "Other", adherents: 51039 },
     { state: "New Hampshire", family: "Reformed", adherents: 20858 },
     { state: "New Hampshire", family: "Restoration", adherents: 7668 },
 
@@ -245,7 +245,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "New Jersey", family: "Baptist", adherents: 189781 },
     { state: "New Jersey", family: "Lutheranism", adherents: 55653 },
     { state: "New Jersey", family: "Methodism", adherents: 133318 },
-    { state: "New Jersey", family: "Other", adherents: 4235260 },
+    { state: "New Jersey", family: "Other", adherents: 412666 },
     { state: "New Jersey", family: "Reformed", adherents: 95458 },
     { state: "New Jersey", family: "Restoration", adherents: 36325 },
 
@@ -253,7 +253,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "New Mexico", family: "Baptist", adherents: 88904 },
     { state: "New Mexico", family: "Lutheranism", adherents: 8039 },
     { state: "New Mexico", family: "Methodism", adherents: 32746 },
-    { state: "New Mexico", family: "Other", adherents: 928981 },
+    { state: "New Mexico", family: "Other", adherents: 148765 },
     { state: "New Mexico", family: "Reformed", adherents: 14543 },
     { state: "New Mexico", family: "Restoration", adherents: 27508 },
 
@@ -261,7 +261,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "New York", family: "Baptist", adherents: 307187 },
     { state: "New York", family: "Lutheranism", adherents: 152419 },
     { state: "New York", family: "Methodism", adherents: 291593 },
-    { state: "New York", family: "Other", adherents: 9095665 },
+    { state: "New York", family: "Other", adherents: 825836 },
     { state: "New York", family: "Reformed", adherents: 158126 },
     { state: "New York", family: "Restoration", adherents: 120438 },
 
@@ -269,7 +269,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "North Carolina", family: "Baptist", adherents: 1586527 },
     { state: "North Carolina", family: "Lutheranism", adherents: 76080 },
     { state: "North Carolina", family: "Methodism", adherents: 639150 },
-    { state: "North Carolina", family: "Other", adherents: 2628188 },
+    { state: "North Carolina", family: "Other", adherents: 1293054 },
     { state: "North Carolina", family: "Reformed", adherents: 176976 },
     { state: "North Carolina", family: "Restoration", adherents: 104801 },
 
@@ -277,7 +277,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "North Dakota", family: "Baptist", adherents: 3054 },
     { state: "North Dakota", family: "Lutheranism", adherents: 173005 },
     { state: "North Dakota", family: "Methodism", adherents: 30806 },
-    { state: "North Dakota", family: "Other", adherents: 207501 },
+    { state: "North Dakota", family: "Other", adherents: 26770 },
     { state: "North Dakota", family: "Reformed", adherents: 9229 },
     { state: "North Dakota", family: "Restoration", adherents: 3031 },
 
@@ -285,7 +285,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Ohio", family: "Baptist", adherents: 427194 },
     { state: "Ohio", family: "Lutheranism", adherents: 225883 },
     { state: "Ohio", family: "Methodism", adherents: 442091 },
-    { state: "Ohio", family: "Other", adherents: 4091897 },
+    { state: "Ohio", family: "Other", adherents: 1849431 },
     { state: "Ohio", family: "Reformed", adherents: 170034 },
     { state: "Ohio", family: "Restoration", adherents: 215691 },
 
@@ -293,7 +293,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Oklahoma", family: "Baptist", adherents: 856133 },
     { state: "Oklahoma", family: "Lutheranism", adherents: 22368 },
     { state: "Oklahoma", family: "Methodism", adherents: 283548 },
-    { state: "Oklahoma", family: "Other", adherents: 1080974 },
+    { state: "Oklahoma", family: "Other", adherents: 690560 },
     { state: "Oklahoma", family: "Reformed", adherents: 20848 },
     { state: "Oklahoma", family: "Restoration", adherents: 130841 },
 
@@ -301,7 +301,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Oregon", family: "Baptist", adherents: 34580 },
     { state: "Oregon", family: "Lutheranism", adherents: 42643 },
     { state: "Oregon", family: "Methodism", adherents: 38708 },
-    { state: "Oregon", family: "Other", adherents: 1164428 },
+    { state: "Oregon", family: "Other", adherents: 404681 },
     { state: "Oregon", family: "Reformed", adherents: 20676 },
     { state: "Oregon", family: "Restoration", adherents: 88013 },
 
@@ -309,7 +309,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Pennsylvania", family: "Baptist", adherents: 271326 },
     { state: "Pennsylvania", family: "Lutheranism", adherents: 375964 },
     { state: "Pennsylvania", family: "Methodism", adherents: 489147 },
-    { state: "Pennsylvania", family: "Other", adherents: 4496218 },
+    { state: "Pennsylvania", family: "Other", adherents: 1117568 },
     { state: "Pennsylvania", family: "Reformed", adherents: 298226 },
     { state: "Pennsylvania", family: "Restoration", adherents: 58397 },
 
@@ -317,7 +317,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Rhode Island", family: "Baptist", adherents: 12984 },
     { state: "Rhode Island", family: "Lutheranism", adherents: 3827 },
     { state: "Rhode Island", family: "Methodism", adherents: 6860 },
-    { state: "Rhode Island", family: "Other", adherents: 515238 },
+    { state: "Rhode Island", family: "Other", adherents: 35663 },
     { state: "Rhode Island", family: "Reformed", adherents: 7700 },
     { state: "Rhode Island", family: "Restoration", adherents: 3057 },
 
@@ -325,7 +325,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "South Carolina", family: "Baptist", adherents: 957986 },
     { state: "South Carolina", family: "Lutheranism", adherents: 46358 },
     { state: "South Carolina", family: "Methodism", adherents: 260567 },
-    { state: "South Carolina", family: "Other", adherents: 1140293 },
+    { state: "South Carolina", family: "Other", adherents: 592892 },
     { state: "South Carolina", family: "Reformed", adherents: 89710 },
     { state: "South Carolina", family: "Restoration", adherents: 34416 },
 
@@ -333,7 +333,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "South Dakota", family: "Baptist", adherents: 9110 },
     { state: "South Dakota", family: "Lutheranism", adherents: 142785 },
     { state: "South Dakota", family: "Methodism", adherents: 54377 },
-    { state: "South Dakota", family: "Other", adherents: 242045 },
+    { state: "South Dakota", family: "Other", adherents: 90439 },
     { state: "South Dakota", family: "Reformed", adherents: 31369 },
     { state: "South Dakota", family: "Restoration", adherents: 4304 },
 
@@ -341,7 +341,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Tennessee", family: "Baptist", adherents: 1599185 },
     { state: "Tennessee", family: "Lutheranism", adherents: 25564 },
     { state: "Tennessee", family: "Methodism", adherents: 362942 },
-    { state: "Tennessee", family: "Other", adherents: 1358058 },
+    { state: "Tennessee", family: "Other", adherents: 873296 },
     { state: "Tennessee", family: "Reformed", adherents: 99715 },
     { state: "Tennessee", family: "Restoration", adherents: 295878 },
 
@@ -349,7 +349,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Texas", family: "Baptist", adherents: 3832459 },
     { state: "Texas", family: "Lutheranism", adherents: 210106 },
     { state: "Texas", family: "Methodism", adherents: 984750 },
-    { state: "Texas", family: "Other", adherents: 10149920 },
+    { state: "Texas", family: "Other", adherents: 2940791 },
     { state: "Texas", family: "Reformed", adherents: 124423 },
     { state: "Texas", family: "Restoration", adherents: 522200 },
 
@@ -357,7 +357,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Utah", family: "Baptist", adherents: 14597 },
     { state: "Utah", family: "Lutheranism", adherents: 5940 },
     { state: "Utah", family: "Methodism", adherents: 4507 },
-    { state: "Utah", family: "Other", adherents: 2449309 },
+    { state: "Utah", family: "Other", adherents: 45665 },
     { state: "Utah", family: "Reformed", adherents: 4556 },
     { state: "Utah", family: "Restoration", adherents: 5886 },
 
@@ -365,7 +365,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Vermont", family: "Baptist", adherents: 11368 },
     { state: "Vermont", family: "Lutheranism", adherents: 1252 },
     { state: "Vermont", family: "Methodism", adherents: 10688 },
-    { state: "Vermont", family: "Other", adherents: 197555 },
+    { state: "Vermont", family: "Other", adherents: 38287 },
     { state: "Vermont", family: "Reformed", adherents: 14102 },
     { state: "Vermont", family: "Restoration", adherents: 1747 },
 
@@ -373,7 +373,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Virginia", family: "Baptist", adherents: 807362 },
     { state: "Virginia", family: "Lutheranism", adherents: 61069 },
     { state: "Virginia", family: "Methodism", adherents: 451121 },
-    { state: "Virginia", family: "Other", adherents: 2291238 },
+    { state: "Virginia", family: "Other", adherents: 946310 },
     { state: "Virginia", family: "Reformed", adherents: 123138 },
     { state: "Virginia", family: "Restoration", adherents: 105846 },
 
@@ -381,7 +381,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Washington", family: "Baptist", adherents: 77865 },
     { state: "Washington", family: "Lutheranism", adherents: 95560 },
     { state: "Washington", family: "Methodism", adherents: 82059 },
-    { state: "Washington", family: "Other", adherents: 2748720 },
+    { state: "Washington", family: "Other", adherents: 1372577 },
     { state: "Washington", family: "Reformed", adherents: 54703 },
     { state: "Washington", family: "Restoration", adherents: 93319 },
 
@@ -389,7 +389,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "West Virginia", family: "Baptist", adherents: 138932 },
     { state: "West Virginia", family: "Lutheranism", adherents: 8377 },
     { state: "West Virginia", family: "Methodism", adherents: 127205 },
-    { state: "West Virginia", family: "Other", adherents: 344564 },
+    { state: "West Virginia", family: "Other", adherents: 211360 },
     { state: "West Virginia", family: "Reformed", adherents: 12817 },
     { state: "West Virginia", family: "Restoration", adherents: 36026 },
 
@@ -397,7 +397,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Wisconsin", family: "Baptist", adherents: 64889 },
     { state: "Wisconsin", family: "Lutheranism", adherents: 722802 },
     { state: "Wisconsin", family: "Methodism", adherents: 80454 },
-    { state: "Wisconsin", family: "Other", adherents: 1835259 },
+    { state: "Wisconsin", family: "Other", adherents: 416609 },
     { state: "Wisconsin", family: "Reformed", adherents: 85276 },
     { state: "Wisconsin", family: "Restoration", adherents: 23513 },
 
@@ -405,7 +405,7 @@ export const PROTESTANT_BY_STATE = [
     { state: "Wyoming", family: "Baptist", adherents: 14929 },
     { state: "Wyoming", family: "Lutheranism", adherents: 11704 },
     { state: "Wyoming", family: "Methodism", adherents: 9450 },
-    { state: "Wyoming", family: "Other", adherents: 180608 },
+    { state: "Wyoming", family: "Other", adherents: 37451 },
     { state: "Wyoming", family: "Reformed", adherents: 4450 },
     { state: "Wyoming", family: "Restoration", adherents: 5502 },
 ];

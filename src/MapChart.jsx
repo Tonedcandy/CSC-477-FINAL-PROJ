@@ -3,8 +3,23 @@ import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 
+const normalizeState = name =>
+    (name || "")
+        .toLowerCase()
+        .replace(/[^a-z\s]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+
 export default function MapChart({ us, onStateClick, selectedState }) {
     const svgRef = useRef(null);
+    const countsRef = useRef(null);
+    const colorScaleRef = useRef(null);
+    const statesSelectionRef = useRef(null);
+    const onStateClickRef = useRef(onStateClick);
+
+    useEffect(() => {
+        onStateClickRef.current = onStateClick;
+    }, [onStateClick]);
 
     useEffect(() => {
         if (!us || !svgRef.current) return;
@@ -126,19 +141,16 @@ export default function MapChart({ us, onStateClick, selectedState }) {
             .attr("viewBox", [0, 0, width, height])
             .attr("width", width)
             .attr("height", height)
-            .attr("style", "max-width: 100%; height: auto;")
+            .attr(
+                "style",
+                "width: 100%; height: 100%; max-width: 100%; object-fit: contain;"
+            )
             .on("click", reset);
 
         // clear previous content if effect re-runs
         svg.selectAll("*").remove();
 
         const formatNumber = d3.format(",");
-        const normalizeState = name =>
-            (name || "")
-                .toLowerCase()
-                .replace(/[^a-z\s]/g, "")
-                .replace(/\s+/g, " ")
-                .trim();
         const formatPercent = d3.format(".1%");
 
         const zoom = d3
@@ -224,19 +236,14 @@ export default function MapChart({ us, onStateClick, selectedState }) {
                 .data(stateFeatures)
                 .join("path")
                 .attr("d", path)
-                .attr("fill", d => {
-                    const baseColor = fillForState(d.properties.name);
-                    const isSelected =
-                        selectedState &&
-                        normalizeState(d.properties.name) === normalizeState(selectedState);
-                    if (!isSelected) return baseColor;
-                    const c = d3.color(baseColor) || d3.color("#6b21a8");
-                    c.opacity = 1;
-                    return c.darker(0.7);
-                })
+                .attr("fill", d => fillForState(d.properties.name))
                 .on("mousemove", showTooltip)
                 .on("mouseleave", hideTooltip)
                 .on("click", clicked);
+
+            statesSelectionRef.current = states;
+            countsRef.current = counts;
+            colorScaleRef.current = color;
 
             states.append("title").text(d => {
                 const value = counts.get(normalizeState(d.properties.name));
@@ -277,9 +284,7 @@ export default function MapChart({ us, onStateClick, selectedState }) {
         svg.call(zoom);
 
         function reset() {
-            if (onStateClick) {
-                onStateClick(null);
-            }
+            onStateClickRef.current?.(null);
             svg
                 .transition()
                 .duration(750)
@@ -294,9 +299,7 @@ export default function MapChart({ us, onStateClick, selectedState }) {
             if (!states) return;
 
             const stateName = d.properties.name;
-            if (onStateClick) {
-                onStateClick(stateName);
-            }
+            onStateClickRef.current?.(stateName);
 
             const [[x0, y0], [x1, y1]] = path.bounds(d);
             event.stopPropagation();
@@ -332,6 +335,9 @@ export default function MapChart({ us, onStateClick, selectedState }) {
         return () => {
             svg.on(".zoom", null).on("click", null);
             isCancelled = true;
+            statesSelectionRef.current = null;
+            countsRef.current = null;
+            colorScaleRef.current = null;
             svg.selectAll("*").remove();
             tooltip.remove();
         };
@@ -415,7 +421,32 @@ export default function MapChart({ us, onStateClick, selectedState }) {
                 .attr("fill", "#111")
                 .text("Protestant adherents (state total)");
         }
-    }, [us, onStateClick, selectedState]);
+    }, [us]);
+
+    useEffect(() => {
+        const states = statesSelectionRef.current;
+        const counts = countsRef.current;
+        const color = colorScaleRef.current;
+        if (!states || !counts || !color) return;
+
+        const baseFill = name => {
+            const value = counts.get(normalizeState(name));
+            return Number.isFinite(value) ? color(value) : "#e5e7eb";
+        };
+
+        states.attr("fill", d => {
+            const base = baseFill(d.properties.name);
+            if (
+                selectedState &&
+                normalizeState(d.properties.name) === normalizeState(selectedState)
+            ) {
+                const c = d3.color(base) || d3.color("#6b21a8");
+                c.opacity = 1;
+                return c.darker(0.7).formatHex();
+            }
+            return base;
+        });
+    }, [selectedState]);
 
     return <svg ref={svgRef} />;
 }
