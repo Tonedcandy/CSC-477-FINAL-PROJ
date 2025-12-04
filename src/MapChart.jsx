@@ -376,9 +376,9 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
         }
 
         function addLegend(color, values, domainMin, domainMax) {
-            const legendWidth = 260;
-            const legendHeight = 10;
-            const marginTop = 20;
+            const legendWidth = 500;
+            const legendHeight = 28;
+            const marginTop = 40;
 
             const defs = svg.append("defs");
             const gradientId = "legend-gradient";
@@ -410,7 +410,8 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
                 .attr("width", legendWidth)
                 .attr("height", legendHeight)
                 .attr("fill", `url(#${gradientId})`)
-                .attr("stroke", "#ccc");
+                .attr("stroke", "#111")
+                .attr("stroke-width", 1.5);
 
             const legendScale = d3
                 .scaleLinear()
@@ -419,21 +420,24 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
 
             const legendAxis = d3
                 .axisBottom(legendScale)
-                .ticks(5)
+                .ticks(7)
                 .tickFormat(d => (d >= 1_000_000 ? `${Math.round(d / 1_000_000)}M` : formatNumber(d)));
 
             legend
                 .append("g")
-                .attr("transform", `translate(0,${legendHeight})`)
-                .call(legendAxis)
-                .call(gAxis => gAxis.select(".domain").remove());
+                .attr("transform", `translate(0,${legendHeight + 4})`)
+                .call(legendAxis.tickSize(8))
+                .call(gAxis => gAxis.select(".domain").remove())
+                .selectAll("text")
+                .attr("font-size", 14);
 
             legend
                 .append("text")
                 .attr("x", legendWidth / 2)
-                .attr("y", -6)
+                .attr("y", -18)
                 .attr("text-anchor", "middle")
-                .attr("font-size", 12)
+                .attr("font-size", 20)
+                .attr("font-weight", 800)
                 .attr("fill", "#111")
                 .text(
                     selectedFamily
