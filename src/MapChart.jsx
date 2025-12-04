@@ -223,14 +223,15 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
                     ? formatPercent(value / population)
                     : "No population data";
             const body = Number.isFinite(value)
-                ? `<div><strong>${formatNumber(value)}</strong> adherents</div>`
+                ? `<div><strong>${formatNumber(value)}</strong> ${selectedFamily || "Protestant"} adherents</div>`
                 : "<div>No data</div>";
             const pctLine = Number.isFinite(population)
                 ? `<div>${percentLabel} of state population</div>`
                 : "";
             tooltip
                 .html(
-                    `<div style="font-weight:700;margin-bottom:4px;">${d.properties.name}</div>${body}${pctLine}`
+                    `<div style="font-weight:700;margin-bottom:4px;">${d.properties.name}</div>${selectedFamily ? `<div>${selectedFamily}</div>` : "<div>Protestantism</div>"
+                    }${body}${pctLine}`
                 )
                 .style("left", `${event.pageX + 12}px`)
                 .style("top", `${event.pageY + 12}px`)
@@ -269,7 +270,7 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
                     ? formatPercent(value / population)
                     : "No population data";
             const label = Number.isFinite(value)
-                ? `${formatNumber(value)} adherents`
+                ? `${formatNumber(value)} ${selectedFamily || "Protestant"} adherents`
                 : "No data";
             return `${d.properties.name}: ${label} ${Number.isFinite(population) ? `(${percent})` : ""
                 }`;
