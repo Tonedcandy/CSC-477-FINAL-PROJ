@@ -378,7 +378,7 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
         function addLegend(color, values, domainMin, domainMax) {
             const legendWidth = 500;
             const legendHeight = 28;
-            const marginTop = 40;
+            const marginTop = 90;
 
             const defs = svg.append("defs");
             const gradientId = "legend-gradient";
@@ -403,7 +403,7 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
 
             const legend = svg
                 .append("g")
-                .attr("transform", `translate(${(width - legendWidth) / 2},${marginTop})`);
+                .attr("transform", `translate(${10},${-marginTop})`);
 
             legend
                 .append("rect")
@@ -433,9 +433,9 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
 
             legend
                 .append("text")
-                .attr("x", legendWidth / 2)
+                .attr("x", 0)
                 .attr("y", -18)
-                .attr("text-anchor", "middle")
+                .attr("text-anchor", "start")
                 .attr("font-size", 20)
                 .attr("font-weight", 800)
                 .attr("fill", "#111")

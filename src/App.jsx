@@ -90,7 +90,7 @@ function App() {
           </p>
           <section className="mt-6 gap-6 flex flex-row">
             {/* Map */}
-            <div className="lg:w-8/12 w-full h-full">
+            <div className="h-[400px] lg:w-8/12 w-full">
               <MapChart
                 us={usData}
                 selectedState={selectedState}
