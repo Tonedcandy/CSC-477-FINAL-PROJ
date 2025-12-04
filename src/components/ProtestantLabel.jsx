@@ -2,6 +2,7 @@
 import React, { useMemo } from "react";
 import { PROTESTANT_BY_STATE } from "../data/protestantByState";
 import { useAnimatedNumber } from "../hooks/useAnimatedNumber";
+import { FAMILY_COLORS, DEFAULT_FAMILY_COLOR } from "../constants/familyColors";
 
 const FAMILIES = [
     "Anglicanism",
@@ -77,8 +78,49 @@ const STATE_POPULATION = new Map([
     ["Wyoming", 576851],
 ]);
 
-export default function ProtestantLabel({ selectedState }) {
-    // aggregate for either one state or all states
+const FamilyRow = ({ family, value, total, isActive, onToggle }) => {
+    const animated = useAnimatedNumber(value, 500);
+    const baseColor = FAMILY_COLORS[family] || DEFAULT_FAMILY_COLOR;
+
+    return (
+        <div
+            role="button"
+            tabIndex={0}
+            aria-pressed={isActive}
+            onClick={() => onToggle?.(isActive ? null : family)}
+            onKeyDown={e => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onToggle?.(isActive ? null : family);
+                }
+            }}
+            className="col-span-6 grid grid-cols-6 border-b border-gray-300 py-0.5 cursor-pointer"
+            style={
+                isActive
+                    ? { borderBottom: `4px solid ${baseColor}` }
+                    : { borderBottom: "1px solid #d1d5db" }
+            }
+        >
+            <div
+                className="col-span-2 font-extrabold"
+                style={{ color: isActive ? baseColor : "#111" }}
+            >
+                {family}
+            </div>
+            <div className="col-span-3 text-right pr-2 tabular-nums text-black">
+                {Math.round(animated).toLocaleString()}
+                <span className="text-[11px] text-gray-600">
+                    {" "}({formatMillions(animated)})
+                </span>
+            </div>
+            <div className="col-span-1 font-extrabold text-right text-black">
+                {formatPercent(value, total)}
+            </div>
+        </div>
+    );
+};
+
+export default function ProtestantLabel({ selectedState, selectedFamily, onFamilySelect }) {
     const summary = useMemo(() => {
         const rows = selectedState
             ? PROTESTANT_BY_STATE.filter((r) => r.state === selectedState)
@@ -157,25 +199,16 @@ export default function ProtestantLabel({ selectedState }) {
             <div className="grid grid-cols-6 gap-1 text-sm">
                 {FAMILIES.map((family) => {
                     const value = summary.totalsByFamily.get(family) || 0;
-                    const animated = useAnimatedNumber(value, 500);
-
+                    const isActive = selectedFamily === family;
                     return (
-                        <div
+                        <FamilyRow
                             key={family}
-                            className="col-span-6 grid grid-cols-6 border-b border-gray-300 py-0.5"
-                        >
-                            <div className="col-span-2 font-extrabold">{family}</div>
-                            <div className="col-span-3 text-right pr-2 tabular-nums">
-                                {Math.round(animated).toLocaleString()}
-                                <span className="text-[11px] text-gray-600">
-                                    {" "}({formatMillions(animated)})
-                                </span>
-
-                            </div>
-                            <div className="col-span-1 font-extrabold text-right">
-                                {formatPercent(value, summary.total)}
-                            </div>
-                        </div>
+                            family={family}
+                            value={value}
+                            total={summary.total}
+                            isActive={isActive}
+                            onToggle={onFamilySelect}
+                        />
                     );
                 })}
             </div>

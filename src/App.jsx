@@ -14,6 +14,7 @@ function App() {
   const [displayText, setDisplayText] = useState("");
 
   const [selectedState, setSelectedState] = useState(null);
+  const [selectedFamily, setSelectedFamily] = useState(null);
 
   const [index, setIndex] = useState(0);
   const message = "Hi my name is monish";
@@ -85,6 +86,7 @@ function App() {
               <MapChart
                 us={usData}
                 selectedState={selectedState}
+                selectedFamily={selectedFamily}
                 onStateClick={setSelectedState}
               />
               <br />
@@ -95,10 +97,12 @@ function App() {
             </div>
 
             {/* Label */}
-            <div className="md:w-4/12 w-full flex justify-start">
-              <div className="scale-[0.7] origin-top-left">
-                <ProtestantLabel selectedState={selectedState} />
-              </div>
+            <div className="scale-[0.7] origin-top-left md:w-4/12 w-full flex justify-start">
+              <ProtestantLabel
+                selectedState={selectedState}
+                selectedFamily={selectedFamily}
+                onFamilySelect={setSelectedFamily}
+              />
             </div>
           </section>
 
