@@ -16,6 +16,7 @@ const FAMILIES = [
 
 function formatMillions(n) {
     if (!n) return "0M";
+    if (Math.abs(n) < 1_000_000) return (n / 1_000).toFixed(0) + "K";
     return (n / 1_000_000).toFixed(1) + "M";
 }
 
@@ -138,6 +139,17 @@ export default function ProtestantLabel({ selectedState, selectedFamily, onFamil
         return { totalsByFamily, total };
     }, [selectedState]);
 
+    const topFamilies = useMemo(() => {
+        if (!selectedState) return [];
+        return Array.from(summary.totalsByFamily.entries())
+            .map(([family, value]) => ({ family, value }))
+            .sort((a, b) => b.value - a.value)
+            .slice(0, 5);
+    }, [summary, selectedState]);
+    const topFamiliesMax = topFamilies.length
+        ? Math.max(...topFamilies.map(f => f.value))
+        : 1;
+
     const animatedTotal = useAnimatedNumber(summary.total);
 
     const titleStateText = selectedState || "United States";
@@ -214,7 +226,38 @@ export default function ProtestantLabel({ selectedState, selectedFamily, onFamil
             </div>
 
             <hr className="border-t-4 border-black my-1" />
-            <div className="text-xs">
+            {selectedState && topFamilies.length ? (
+                <div className="mt-3">
+                    <div className="text-base font-bold border-t-4 border-black pt-2 mb-2">
+                        Top families in {selectedState}
+                    </div>
+                    <div className="space-y-2">
+                        {topFamilies.map((entry) => {
+                            const color = FAMILY_COLORS[entry.family] || DEFAULT_FAMILY_COLOR;
+                            const width = (entry.value / topFamiliesMax) * 100;
+                            return (
+                                <div key={entry.family}>
+                                    <div className="flex justify-between text-sm font-semibold">
+                                        <span style={{ color }}>{entry.family}</span>
+                                        <span>{entry.value.toLocaleString()}</span>
+                                    </div>
+                                    <div className="w-full h-3 bg-gray-200">
+                                        <div
+                                            className="h-3"
+                                            style={{
+                                                width: `${width}%`,
+                                                backgroundColor: color,
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            ) : null}
+
+            <div className="text-xs mt-3">
                 <div className="mb-1">
                     “Other” includes Protestant and non-denominational groups that do
                     not fit in the six mainline families above.

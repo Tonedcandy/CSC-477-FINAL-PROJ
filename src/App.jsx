@@ -88,32 +88,33 @@ function App() {
           <p className="mt-4 text-sm text-gray-500">
             Selected state: {selectedState || "None"}
           </p>
-          <section className="mt-6 gap-6 flex flex-row">
+
+          <section className="mt-6 grid gap-6 grid-cols-1 lg:grid-cols-12">
             {/* Map */}
-            <div className="h-[400px] lg:w-8/12 w-full">
+            <div className="h-[400px] lg:col-span-8 col-span-12">
               <MapChart
                 us={usData}
                 selectedState={selectedState}
                 selectedFamily={selectedFamily}
                 onStateClick={setSelectedState}
               />
-              <br />
+
               <p className='w-full text-[0.7em] font-extrabold'>Figure: {mapFigureTitle}</p>
               <p className='w-full text-[0.6em]'>{mapFigureDescription}</p>
 
             </div>
 
-            {/* Label */}
-            <div className="scale-[0.7] origin-top-left md:w-4/12 w-full flex justify-start">
-              <ProtestantLabel
-                selectedState={selectedState}
-                selectedFamily={selectedFamily}
-                onFamilySelect={setSelectedFamily}
-              />
+            {/* Label + Bar chart */}
+            <div className="lg:col-span-4 col-span-12 flex justify-start">
+              <div className="scale-[0.7] origin-top-left w-full">
+                <ProtestantLabel
+                  selectedState={selectedState}
+                  selectedFamily={selectedFamily}
+                  onFamilySelect={setSelectedFamily}
+                />
+              </div>
             </div>
           </section>
-
-
           <br />
           <section>
             <p className='font-bold'>References</p>
