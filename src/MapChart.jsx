@@ -174,7 +174,12 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
         // clear previous content if effect re-runs
         svg.selectAll("*").remove();
 
-        const formatNumber = d3.format(",");
+        const formatNumber = d => {
+            if (!Number.isFinite(d)) return "0";
+            if (Math.abs(d) >= 1_000_000) return `${Math.round(d / 1_000_000)}M`;
+            if (Math.abs(d) >= 1_000) return `${Math.round(d / 1_000)}K`;
+            return d.toLocaleString();
+        };
         const formatPercent = d3.format(".1%");
 
         const zoom = d3
@@ -421,7 +426,11 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
             const legendAxis = d3
                 .axisBottom(legendScale)
                 .ticks(7)
-                .tickFormat(d => (d >= 1_000_000 ? `${Math.round(d / 1_000_000)}M` : formatNumber(d)));
+                .tickFormat(d => {
+                    if (d >= 1_000_000) return `${Math.round(d / 1_000_000)}M`;
+                    if (d >= 1_000) return `${Math.round(d / 1_000)}K`;
+                    return formatNumber(d);
+                });
 
             legend
                 .append("g")

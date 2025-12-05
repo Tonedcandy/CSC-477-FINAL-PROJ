@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import { PROTESTANT_BY_STATE } from "../data/protestantByState";
 import { useAnimatedNumber } from "../hooks/useAnimatedNumber";
 import { FAMILY_COLORS, DEFAULT_FAMILY_COLOR } from "../constants/familyColors";
+import StateFamilyBarChart from "./StateFamilyBarChart";
 
 const FAMILIES = [
     "Anglicanism",
@@ -146,6 +147,7 @@ export default function ProtestantLabel({ selectedState, selectedFamily, onFamil
             .sort((a, b) => b.value - a.value)
             .slice(0, 5);
     }, [summary, selectedState]);
+
     const topFamiliesMax = topFamilies.length
         ? Math.max(...topFamilies.map(f => f.value))
         : 1;
@@ -226,35 +228,44 @@ export default function ProtestantLabel({ selectedState, selectedFamily, onFamil
             </div>
 
             <hr className="border-t-4 border-black my-1" />
-            {selectedState && topFamilies.length ? (
-                <div className="mt-3">
-                    <div className="text-base font-bold border-t-4 border-black pt-2 mb-2">
-                        Top families in {selectedState}
+            {selectedState ? (
+                selectedFamily ? (
+                    <div className="mt-3">
+                        <StateFamilyBarChart
+                            selectedState={selectedState}
+                            selectedFamily={selectedFamily}
+                        />
                     </div>
-                    <div className="space-y-2">
-                        {topFamilies.map((entry) => {
-                            const color = FAMILY_COLORS[entry.family] || DEFAULT_FAMILY_COLOR;
-                            const width = (entry.value / topFamiliesMax) * 100;
-                            return (
-                                <div key={entry.family}>
-                                    <div className="flex justify-between text-sm font-semibold">
-                                        <span style={{ color }}>{entry.family}</span>
-                                        <span>{entry.value.toLocaleString()}</span>
+                ) : topFamilies.length ? (
+                    <div className="mt-3">
+                        <div className="text-base font-bold border-t-4 border-black pt-2 mb-2">
+                            Top families in {selectedState}
+                        </div>
+                        <div className="space-y-2">
+                            {topFamilies.map((entry) => {
+                                const color = FAMILY_COLORS[entry.family] || DEFAULT_FAMILY_COLOR;
+                                const width = (entry.value / topFamiliesMax) * 100;
+                                return (
+                                    <div key={entry.family}>
+                                        <div className="flex justify-between text-sm font-semibold">
+                                            <span >{entry.family}</span>
+                                            <span>{entry.value.toLocaleString()}</span>
+                                        </div>
+                                        <div className="w-full h-3 bg-gray-200">
+                                            <div
+                                                className="h-3"
+                                                style={{
+                                                    width: `${width}%`,
+                                                    backgroundColor: color,
+                                                }}
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="w-full h-3 bg-gray-200">
-                                        <div
-                                            className="h-3"
-                                            style={{
-                                                width: `${width}%`,
-                                                backgroundColor: color,
-                                            }}
-                                        />
-                                    </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
+                        </div>
                     </div>
-                </div>
+                ) : null
             ) : null}
 
             <div className="text-xs mt-3">
