@@ -372,10 +372,33 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
                     return `translate(${x},${y})`;
                 })
                 .attr("text-anchor", "middle")
-                .attr("font-size", 11)
-                .attr("fill", "#111")
-                .attr("stroke", "white")
-                .attr("stroke-width", 1)
+                .attr("font-size", 15)
+                .attr("fill", d => {
+                    const stateColor = d3.color(fillForState(d.properties.name));
+                    if (!stateColor) return "#111";
+
+                    // simple luminance estimate (0 = black, 1 = white)
+                    const luminance =
+                        (0.299 * stateColor.r +
+                            0.587 * stateColor.g +
+                            0.114 * stateColor.b) / 255;
+
+                    // dark background → light text, light background → dark text
+                    return luminance < 0.5 ? "#fff" : "#111";
+                })
+                .attr("stroke", d => {
+                    const stateColor = d3.color(fillForState(d.properties.name));
+                    if (!stateColor) return "#fff";
+
+                    const luminance =
+                        (0.299 * stateColor.r +
+                            0.587 * stateColor.g +
+                            0.114 * stateColor.b) / 255;
+
+                    // use opposite halo color for contrast
+                    return luminance < 0.5 ? "#000" : "#fff";
+                })
+                .attr("stroke-width", 0) // a bit thicker halo
                 .attr("paint-order", "stroke")
                 .text(d => stateAbbr[normalizeState(d.properties.name)] || "");
         }
