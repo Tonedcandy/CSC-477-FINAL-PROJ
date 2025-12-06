@@ -466,7 +466,7 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
             legend
                 .append("text")
                 .attr("x", 0)
-                .attr("y", -18)
+                .attr("y", -10) // legend y-offset
                 .attr("text-anchor", "start")
                 .attr("font-size", 20)
                 .attr("font-weight", 800)
