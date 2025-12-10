@@ -11,7 +11,7 @@ import banner10 from "./assets/banner/10.webp";
 import banner11 from "./assets/banner/11.jpg";
 import banner12 from "./assets/banner/12.svg";
 import banner13 from "./assets/banner/13.png";
-import banner14 from "./assets/banner/14.png";
+import banner14 from "./assets/banner/14.svg";
 import banner15 from "./assets/banner/15.png";
 import banner16 from "./assets/banner/16.png";
 
