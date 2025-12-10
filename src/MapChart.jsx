@@ -35,7 +35,13 @@ const buildColorScale = (family, min, max) => {
     return d3.scaleSequentialSqrt(interpolator).domain([min, max]);
 };
 
-export default function MapChart({ us, onStateClick, selectedState, selectedFamily }) {
+export default function MapChart({
+    us,
+    onStateClick,
+    selectedState,
+    selectedFamily,
+    metric = "total"
+}) {
     const svgRef = useRef(null);
     const countsRef = useRef(null);
     const colorScaleRef = useRef(null);
@@ -48,6 +54,8 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
 
     useEffect(() => {
         if (!us || !svgRef.current) return;
+
+        const isPerCapita = metric === "perCapita";
 
         const width = 975;
         const height = 610;
@@ -181,6 +189,14 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
             return d.toLocaleString();
         };
         const formatPercent = d3.format(".1%");
+        const niceCeilPercent = value => {
+            if (!Number.isFinite(value) || value <= 0) return 0.01; // default to 1% if empty/zero
+            const steps = [0.001, 0.0025, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.25, 0.5, 1];
+            for (const step of steps) {
+                if (value <= step) return step;
+            }
+            return 1;
+        };
 
         const zoom = d3
             .zoom()
@@ -206,16 +222,38 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
 
         let states = null;
         const counts = buildCounts(selectedFamily);
-        const values = Array.from(counts.values()).filter(Number.isFinite);
-        const sorted = values.slice().sort(d3.ascending);
-        const min = sorted[0] ?? 0;
-        const max = sorted[sorted.length - 1] ?? 1;
-        const color = buildColorScale(selectedFamily, min, max === min ? min || 1 : max);
-        const legendMin = min;
-        const legendMax = max === min ? min || 1 : max;
+        const metricValues = new Map();
+        counts.forEach((count, stateKey) => {
+            const pop = statePopulations.get(stateKey);
+            if (isPerCapita) {
+                const ratio =
+                    Number.isFinite(count) && Number.isFinite(pop)
+                        ? count / pop
+                        : NaN;
+                metricValues.set(stateKey, ratio);
+            } else {
+                metricValues.set(stateKey, count);
+            }
+        });
+        const values = Array.from(metricValues.values()).filter(Number.isFinite);
+        const dataMin = values.length ? Math.min(...values) : 0;
+        const dataMax = values.length ? Math.max(...values) : 0;
+        const perCapitaMax = isPerCapita ? niceCeilPercent(dataMax) : null;
+        const domainMin = isPerCapita ? 0 : dataMin;
+        const domainMax = isPerCapita
+            ? perCapitaMax
+            : dataMax === dataMin
+                ? dataMin || 1
+                : dataMax;
+        const legendValues = values.length
+            ? values.concat([domainMin, domainMax]).sort(d3.ascending)
+            : [domainMin, domainMax];
+        const color = buildColorScale(selectedFamily, domainMin, domainMax);
+        const legendMin = domainMin;
+        const legendMax = domainMax;
 
         const fillForState = name => {
-            const value = counts.get(normalizeState(name));
+            const value = metricValues.get(normalizeState(name));
             return Number.isFinite(value) ? color(value) : "#e5e7eb";
         };
 
@@ -223,20 +261,31 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
             const stateKey = normalizeState(d.properties.name);
             const value = counts.get(stateKey);
             const population = statePopulations.get(stateKey);
-            const percentLabel =
+            const percentValue =
                 Number.isFinite(value) && Number.isFinite(population)
-                    ? formatPercent(value / population)
-                    : "No population data";
-            const body = Number.isFinite(value)
-                ? `<div><strong>${formatNumber(value)}</strong> ${selectedFamily || "Protestant"} adherents</div>`
-                : "<div>No data</div>";
-            const pctLine = Number.isFinite(population)
-                ? `<div>${percentLabel} of state population</div>`
-                : "";
+                    ? value / population
+                    : null;
+            const percentLabel = percentValue !== null
+                ? formatPercent(percentValue)
+                : "No population data";
+            const headline = isPerCapita
+                ? percentValue !== null
+                    ? `<div><strong>${percentLabel}</strong> of state population</div>`
+                    : "<div>No population data</div>"
+                : Number.isFinite(value)
+                    ? `<div><strong>${formatNumber(value)}</strong> ${selectedFamily || "Protestant"} adherents</div>`
+                    : "<div>No data</div>";
+            const secondary = isPerCapita
+                ? Number.isFinite(value)
+                    ? `<div>${formatNumber(value)} ${selectedFamily || "Protestant"} adherents</div>`
+                    : ""
+                : percentValue !== null
+                    ? `<div>${percentLabel} of state population</div>`
+                    : "";
             tooltip
                 .html(
                     `<div style="font-weight:700;margin-bottom:4px;">${d.properties.name}</div>${selectedFamily ? `<div>${selectedFamily}</div>` : "<div>Protestantism</div>"
-                    }${body}${pctLine}`
+                    }${headline}${secondary}`
                 )
                 .style("left", `${event.pageX + 12}px`)
                 .style("top", `${event.pageY + 12}px`)
@@ -262,22 +311,28 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
             .on("click", clicked);
 
         statesSelectionRef.current = states;
-        countsRef.current = counts;
+        countsRef.current = metricValues;
         colorScaleRef.current = color;
 
         states.append("title").text(d => {
-            const value = counts.get(normalizeState(d.properties.name));
-            const population = statePopulations.get(
-                normalizeState(d.properties.name)
-            );
+            const key = normalizeState(d.properties.name);
+            const value = counts.get(key);
+            const population = statePopulations.get(key);
             const percent =
                 Number.isFinite(value) && Number.isFinite(population)
                     ? formatPercent(value / population)
-                    : "No population data";
+                    : null;
+            if (isPerCapita) {
+                const main = percent ? `${percent} of population` : "No population data";
+                const extra = Number.isFinite(value)
+                    ? ` (${formatNumber(value)} adherents)`
+                    : "";
+                return `${d.properties.name}: ${main}${extra}`;
+            }
             const label = Number.isFinite(value)
                 ? `${formatNumber(value)} ${selectedFamily || "Protestant"} adherents`
                 : "No data";
-            return `${d.properties.name}: ${label} ${Number.isFinite(population) ? `(${percent})` : ""
+            return `${d.properties.name}: ${label} ${percent ? `(${percent})` : ""
                 }`;
         });
 
@@ -297,7 +352,7 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
             );
 
         addLabels();
-        addLegend(color, sorted, legendMin, legendMax);
+        addLegend(color, legendValues, legendMin, legendMax, isPerCapita);
 
 
         svg.call(zoom);
@@ -403,7 +458,7 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
                 .text(d => stateAbbr[normalizeState(d.properties.name)] || "");
         }
 
-        function addLegend(color, values, domainMin, domainMax) {
+        function addLegend(color, values, domainMin, domainMax, isPerCapitaLegend) {
             const legendWidth = 500;
             const legendHeight = 28;
             const marginTop = 90;
@@ -420,9 +475,7 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
 
             const stops = d3.range(0, 1.01, 0.1);
             stops.forEach(t => {
-                const sample = values.length
-                    ? d3.quantile(values, t)
-                    : domainMin + (domainMax - domainMin) * t;
+                const sample = domainMin + (domainMax - domainMin) * t;
                 gradient
                     .append("stop")
                     .attr("offset", `${t * 100}%`)
@@ -450,6 +503,7 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
                 .axisBottom(legendScale)
                 .ticks(7)
                 .tickFormat(d => {
+                    if (isPerCapitaLegend) return formatPercent(d);
                     if (d >= 1_000_000) return `${Math.round(d / 1_000_000)}M`;
                     if (d >= 1_000) return `${Math.round(d / 1_000)}K`;
                     return formatNumber(d);
@@ -473,11 +527,11 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
                 .attr("fill", "#111")
                 .text(
                     selectedFamily
-                        ? `${selectedFamily} adherents`
-                        : "Protestant adherents (state total)"
+                        ? `${selectedFamily} ${isPerCapitaLegend ? "share of population" : "adherents"}`
+                        : `Protestant ${isPerCapitaLegend ? "share of population" : "adherents (state total)"}`
                 );
         }
-    }, [us, selectedFamily]);
+    }, [us, selectedFamily, metric]);
 
     useEffect(() => {
         const states = statesSelectionRef.current;
@@ -502,7 +556,7 @@ export default function MapChart({ us, onStateClick, selectedState, selectedFami
             }
             return base;
         });
-    }, [selectedState, selectedFamily]);
+    }, [selectedState, selectedFamily, metric]);
 
     return <svg ref={svgRef} />;
 }

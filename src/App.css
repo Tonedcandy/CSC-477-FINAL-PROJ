@@ -43,3 +43,27 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Metric toggle buttons */
+.metric-toggle .toggle-btn {
+  border-radius: 0;
+  background-color: transparent;
+  color: #1f2937;
+  border: 1px solid transparent;
+}
+
+.metric-toggle .toggle-btn.is-active {
+  background-color: #800080;
+  color: #fff;
+  box-shadow: none;
+}
+
+.metric-toggle .toggle-btn:not(.is-active):hover {
+  background-color: #e5e7eb;
+}
+
+.metric-toggle .toggle-btn:focus,
+.metric-toggle .toggle-btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
