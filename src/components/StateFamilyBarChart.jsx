@@ -1,3 +1,11 @@
+// src/components/StateFamilyBarChart.jsx
+
+/*
+ * This source file was developed by Monish Shanmugham Suresh with assistance from OpenAI tools
+ * (ChatGPT and Codex). These tools were used for code suggestions and refactoring;
+ * the human author is responsible for all design decisions and final content.
+ */
+
 import React, { useMemo, useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { TOP_PROTESTANT_CHURCH_GROUPS_BY_FAMILY_BY_STATE } from "../data/topProtestantChurchGroupsByFamilyByState";

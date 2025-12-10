@@ -1,4 +1,11 @@
 // src/hooks/useAnimatedNumber.js
+
+/*
+ * This source file was developed by Monish Shanmugham Suresh with assistance from OpenAI tools
+ * (ChatGPT and Codex). These tools were used for code suggestions and refactoring;
+ * the human author is responsible for all design decisions and final content.
+ */
+
 import { useEffect, useState } from "react";
 
 export function useAnimatedNumber(target, duration = 600) {

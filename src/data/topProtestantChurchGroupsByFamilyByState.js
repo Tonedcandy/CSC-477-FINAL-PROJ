@@ -1,3 +1,11 @@
+// src/data/topProtestantChurchGroupsByFamilyByState.js
+
+/*
+ * This source file was developed by Monish Shanmugham Suresh with assistance from OpenAI tools
+ * (ChatGPT and Codex). These tools were used for code suggestions and refactoring;
+ * the human author is responsible for all design decisions and final content.
+ */
+
 export const TOP_PROTESTANT_CHURCH_GROUPS_BY_FAMILY_BY_STATE = [
     {
         "State Name": "Alabama",

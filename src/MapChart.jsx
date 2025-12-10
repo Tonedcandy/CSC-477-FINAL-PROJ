@@ -1,4 +1,11 @@
 // MapChart.jsx
+
+/*
+ * This source file was developed by Monish Shanmugham Suresh with assistance from OpenAI tools
+ * (ChatGPT and Codex). These tools were used for code suggestions and refactoring;
+ * the human author is responsible for all design decisions and final content.
+ */
+
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";

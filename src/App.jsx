@@ -1,3 +1,11 @@
+// src/App.jsx
+
+/*
+ * This source file was developed by Monish Shanmugham Suresh with assistance from OpenAI tools
+ * (ChatGPT and Codex). These tools were used for code suggestions and refactoring;
+ * the human author is responsible for all design decisions and final content.
+ */
+
 import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'

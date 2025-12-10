@@ -1,4 +1,11 @@
 // src/components/ProtestantLabel.jsx
+
+/*
+ * This source file was developed by Monish Shanmugham Suresh with assistance from OpenAI tools
+ * (ChatGPT and Codex). These tools were used for code suggestions and refactoring;
+ * the human author is responsible for all design decisions and final content.
+ */
+
 import React, { useMemo } from "react";
 import { PROTESTANT_BY_STATE } from "../data/protestantByState";
 import { useAnimatedNumber } from "../hooks/useAnimatedNumber";
