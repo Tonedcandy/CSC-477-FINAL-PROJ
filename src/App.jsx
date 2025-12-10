@@ -167,7 +167,7 @@ function App() {
           <br />
 
           <section>
-            <p className='font-bold'>References</p>
+            <p className="text-xl text-[purple]">References</p>
             <p>US Religion Census - <a className='text-[#00008b]' href="https://www.usreligioncensus.org/node/1639" target="_blank" rel="noopener noreferrer">2020 U.S. Religion Census: Religious Congregations & Adherents Study. Association of Statisticians of American Religious Bodies.</a></p>
             {/* <p>Pew Research Center - <a className='text-[#00008b]' href="https://www.pewresearch.org/religious-landscape-study/?gad_source=1&gad_campaignid=22378837192&gbraid=0AAAAA-ddO9ENPLuTQ1VMpTLSt_E-sOSXb&gclid=Cj0KCQiA5uDIBhDAARIsAOxj0CGNxYSMKe41sXcLeCBwAEC5uuG9kWKCpcLKa7bD0NM5ej6xyjftuw8aAhIqEALw_wcB">Religious Landscape Study 2023-24</a></p> */}
 
