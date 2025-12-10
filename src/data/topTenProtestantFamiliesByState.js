@@ -1,3 +1,11 @@
+// src/data/topTenProtestantFamiliesByState.js
+
+/*
+ * This source file was developed by Monish Shanmugham Suresh with assistance from OpenAI tools
+ * (ChatGPT and Codex). These tools were used for code suggestions and refactoring;
+ * the human author is responsible for all design decisions and final content.
+ */
+
 // Top 10 Protestant denominations per state.
 // Extend this list as needed; entries must include "State Name", "Group Name", sa (adherents), and rnk (1-10).
 export const TOP_TEN_PROTESTANT_FAMILIES = [

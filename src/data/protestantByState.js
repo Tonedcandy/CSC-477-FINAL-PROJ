@@ -1,5 +1,11 @@
 // protestantByState.js
 
+/*
+ * This source file was developed by Monish Shanmugham Suresh with assistance from OpenAI tools
+ * (ChatGPT and Codex). These tools were used for code suggestions and refactoring;
+ * the human author is responsible for all design decisions and final content.
+ */
+
 export const PROTESTANT_BY_STATE = [
     { state: "Alabama", family: "Anglicanism", adherents: 138628 },
     { state: "Alabama", family: "Baptist", adherents: 1531982 },
