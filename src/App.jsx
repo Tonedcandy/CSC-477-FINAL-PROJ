@@ -114,8 +114,7 @@ function App() {
             </div>
 
             {/* Label + Bar chart */}
-
-            <div className={`lg:col-span-4 col-span-12 flex justify-start ${selectedState ? "-mb-25" : ""}`}>
+            <div className="lg:col-span-4 col-span-12 flex justify-start">
               <div className="scale-[0.7] origin-top-left w-full -mb-25">
                 <ProtestantLabel
                   selectedState={selectedState}
