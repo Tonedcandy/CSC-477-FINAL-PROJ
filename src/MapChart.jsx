@@ -491,7 +491,7 @@ export default function MapChart({
 
             const legend = svg
                 .append("g")
-                .attr("transform", `translate(${10},${-marginTop})`);
+                .attr("transform", `translate(${20},${-marginTop})`);
 
             legend
                 .append("rect")
