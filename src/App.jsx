@@ -15,6 +15,7 @@ function App() {
 
   const [selectedState, setSelectedState] = useState(null);
   const [selectedFamily, setSelectedFamily] = useState(null);
+  const [mapMetric, setMapMetric] = useState("total"); // "total" | "perCapita"
 
   const [index, setIndex] = useState(0);
   const message = "Hi my name is monish";
@@ -28,13 +29,15 @@ function App() {
 
     return () => clearTimeout(timeoutID);
   }, [index]);
+
+  const isPerCapita = mapMetric === "perCapita";
   const mapFigureTitle = selectedFamily
-    ? `${selectedFamily} adherents by state.`
-    : "Protestant presence by state.";
+    ? `${selectedFamily} ${isPerCapita ? "share of population" : "adherents"} by state.`
+    : `Protestant ${isPerCapita ? "share of population" : "presence"} by state.`;
 
   const mapFigureDescription = selectedFamily
-    ? `This choropleth map highlights where ${selectedFamily} communities concentrate across the United States. Darker shading indicates states with more adherents in this family, while lighter shading marks smaller presences.`
-    : "This choropleth map shows the share of residents in each U.S. state who identify with a Protestant tradition. Darker shading indicates a higher proportion of Protestants, while lighter shading marks states where Protestants make up a smaller share of the population. Use this map as a snapshot of the current religious landscape across the country.";
+    ? `This choropleth map highlights where ${selectedFamily} communities concentrate across the United States. Darker shading indicates states with ${isPerCapita ? "a larger per-capita presence" : "more adherents"} in this family, while lighter shading marks smaller presences.`
+    : `This choropleth map shows the ${isPerCapita ? "share of residents" : "number of adherents"} in each U.S. state who identify with a Protestant tradition. Darker shading indicates a higher ${isPerCapita ? "per-capita presence" : "total"}, while lighter shading marks states where Protestants make up a smaller share of the population. Use this map as a snapshot of the current religious landscape across the country.`;
 
   return (
     <div className='min-h-screen bg-slate-200 flex justify-center py-10'>
@@ -76,13 +79,32 @@ function App() {
             Selected state: {selectedState || "None"}
           </p>
 
-          <section className="mt-6 grid gap-6 grid-cols-1 lg:grid-cols-12">
+          <section className="mt-4 grid gap-6 grid-cols-1 lg:grid-cols-12">
             {/* Map */}
-            <div className="h-[400px] lg:col-span-8 col-span-12">
+            <div className="relative h-[400px] lg:col-span-8 col-span-12">
+              <div className="absolute right-0 top-0 z-10 flex justify-end bg-transparent px-1 py-1 shadow-none border-none">
+                <div className="metric-toggle inline-flex border border-slate-300 bg-slate-50 text-xs font-semibold">
+                  <button
+                    className={`toggle-btn px-2.5 py-1 transition-colors ${!isPerCapita ? "is-active" : ""
+                      }`}
+                    onClick={() => setMapMetric("total")}
+                  >
+                    Totals
+                  </button>
+                  <button
+                    className={`toggle-btn px-2.5 py-1 transition-colors ${isPerCapita ? "is-active" : ""
+                      }`}
+                    onClick={() => setMapMetric("perCapita")}
+                  >
+                    Per capita
+                  </button>
+                </div>
+              </div>
               <MapChart
                 us={usData}
                 selectedState={selectedState}
                 selectedFamily={selectedFamily}
+                metric={mapMetric}
                 onStateClick={setSelectedState}
               />
 
@@ -93,7 +115,7 @@ function App() {
 
             {/* Label + Bar chart */}
             <div className="lg:col-span-4 col-span-12 flex justify-start">
-              <div className="scale-[0.7] origin-top-left w-full">
+              <div className="scale-[0.7] origin-top-left w-full -mb-25">
                 <ProtestantLabel
                   selectedState={selectedState}
                   selectedFamily={selectedFamily}
@@ -145,8 +167,8 @@ function App() {
           <br />
 
           <section>
-            <p className='font-bold'>References</p>
-            <p>US Religion Census - <a className='text-[#00008b]' href="https://www.usreligioncensus.org/node/1639">2020 U.S. Religion Census: Religious Congregations & Adherents Study. Association of Statisticians of American Religious Bodies.</a></p>
+            <p className="text-xl text-[purple]">References</p>
+            <p>US Religion Census - <a className='text-[#00008b]' href="https://www.usreligioncensus.org/node/1639" target="_blank" rel="noopener noreferrer">2020 U.S. Religion Census: Religious Congregations & Adherents Study. Association of Statisticians of American Religious Bodies.</a></p>
             {/* <p>Pew Research Center - <a className='text-[#00008b]' href="https://www.pewresearch.org/religious-landscape-study/?gad_source=1&gad_campaignid=22378837192&gbraid=0AAAAA-ddO9ENPLuTQ1VMpTLSt_E-sOSXb&gclid=Cj0KCQiA5uDIBhDAARIsAOxj0CGNxYSMKe41sXcLeCBwAEC5uuG9kWKCpcLKa7bD0NM5ej6xyjftuw8aAhIqEALw_wcB">Religious Landscape Study 2023-24</a></p> */}
 
           </section>
